@@ -11,7 +11,7 @@ Create a **registration form** that collects user information (e.g., name, email
 
 2. Follow **10 clean code principles**, such as:
    1. Meaningful and descriptive names.
-   2. Small and focused functions.
+   2. Single Responsipility Principle.
    3. Avoid duplication (DRY principle).
    4. Clear and concise comments.
    5. Consistent formatting and style.
