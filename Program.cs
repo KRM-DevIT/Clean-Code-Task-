@@ -1,8 +1,6 @@
 ﻿using System;
 
-
 // 1- Meaningful Names
-// 2- Single Responsibility Principle
 
 namespace UserRegisteration
 {
@@ -14,6 +12,18 @@ namespace UserRegisteration
         public const int MinPasswordLen = 6;
     }
 
+    // 1- Meaningful Names
+    // 2- Single Responsibility Principle
+    public class User
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public int Age { get; set; }
+        public string Password { get; set; }
+    }
+
+    // 2- Single Responsibility Principle
     public class UserValidator
     {
         public bool ValidateName(string name)
@@ -52,23 +62,26 @@ namespace UserRegisteration
         }
     }
 
+    // 2- Single Responsibility Principle
     class Program
     {
         static void Main(string[] args)
         {
             var validator = new UserValidator();
+            var user = new User();
 
             Console.WriteLine("Please fill in the following form to complete registration.\n");
 
-            string name = ReadAndValidate("Name", validator.ValidateName, "Invalid name");
-            string email = ReadAndValidate("Email", validator.ValidateEmail, "Invalid email");
-            string phone = ReadAndValidate("Phone", validator.ValidatePhoneNumber, "Invalid phone");
-            int age = ReadAndValidateAge("Age", validator.ValidateAge, "Invalid age");
-            string pass = ReadAndValidatePassword(validator);
+            user.Name = ReadAndValidate("Name", validator.ValidateName, "Invalid name");
+            user.Email = ReadAndValidate("Email", validator.ValidateEmail, "Invalid email");
+            user.Phone = ReadAndValidate("Phone", validator.ValidatePhoneNumber, "Invalid phone");
+            user.Age = ReadAndValidateAge("Age", validator.ValidateAge, "Invalid age");
+            user.Password = ReadAndValidatePassword(validator);
 
             Console.WriteLine("\nRegistration completed successfully!");
         }
 
+        // 2- Single Responsibility Principle
         static int ReadAndValidateAge(string field, Func<int, bool> validate, string error)
         {
             while (true)
@@ -82,6 +95,8 @@ namespace UserRegisteration
                 Console.WriteLine(error);
             }
         }
+
+        // 2- Single Responsibility Principle
         static string ReadAndValidate(string field, Func<string, bool> validate, string error)
         {
             while (true)
@@ -95,6 +110,8 @@ namespace UserRegisteration
                 Console.WriteLine(error);
             }
         }
+
+        // 2- Single Responsibility Principle
         static string ReadAndValidatePassword(UserValidator validator)
         {
             while (true)
